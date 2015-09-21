@@ -1,0 +1,17 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	0	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Layer	/home/user/projects/screen_hints/hints.py	/^class Layer(QMainWindow):$/;"	class	line:12
+__init__	/home/user/projects/screen_hints/hints.py	/^    def __init__(self):$/;"	member	line:13	class:Layer
+goBack	/home/user/projects/screen_hints/hints.py	/^    def goBack(self):$/;"	member	line:46	class:Layer
+setPointer	/home/user/projects/screen_hints/hints.py	/^    def setPointer(self, rect):$/;"	member	line:52	class:Layer
+clickHere	/home/user/projects/screen_hints/hints.py	/^    def clickHere(self, rect):$/;"	member	line:56	class:Layer
+getArea	/home/user/projects/screen_hints/hints.py	/^    def getArea(self, k, direction):$/;"	member	line:64	class:Layer
+selectArea	/home/user/projects/screen_hints/hints.py	/^    def selectArea(self, hint, rect):$/;"	member	line:77	class:Layer
+setArea	/home/user/projects/screen_hints/hints.py	/^    def setArea(self, new_rect, back=False):$/;"	member	line:81	class:Layer
+drawLines	/home/user/projects/screen_hints/hints.py	/^    def drawLines(self):$/;"	member	line:89	class:Layer
+app	/home/user/projects/screen_hints/hints.py	/^app = QApplication(sys.argv)$/;"	variable	line:153
+layer	/home/user/projects/screen_hints/hints.py	/^layer = Layer()$/;"	variable	line:154
