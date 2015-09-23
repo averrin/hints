@@ -18,6 +18,18 @@ CWD = os.path.split(sys.argv[0])[0]
 config = ConfigParser.ConfigParser()
 config.read(os.path.join(CWD, 'hints.cfg'))
 
+def move(x, y):
+    if sys.platform.startswith('linux'):
+        os.system('xdotool mousemove %s %s' % (x, y))
+    else:
+        os.system('imouse.exe %s %s move' % (x, y))
+
+def click(x, y):
+    if sys.platform.startswith('linux'):
+        move(x, y)
+        os.system('xdotool click 1')
+    else:
+        os.system('imouse.exe %s %s click' % (x, y))
 
 class Layer(QMainWindow):
     def __init__(self):
@@ -48,7 +60,7 @@ class Layer(QMainWindow):
         self.scene = scene
         self.drawLines()
         self.esc = QShortcut(QKeySequence('Esc'), self)
-        self.esc.activated.connect(lambda: os.system('xdotool mousemove %s' % config.get('Settings', 'mouse_home_coords')))
+        self.esc.activated.connect(lambda: move(*config.get('Settings', 'mouse_home_coords').split(' ')))
         self.back = QShortcut(QKeySequence('Backspace'), self)
         self.back.activated.connect(self.goBack)
 
@@ -59,15 +71,15 @@ class Layer(QMainWindow):
         self.setArea(self.rects.get(), True)
 
     def setPointer(self, rect):
-        os.system('xdotool mousemove %s %s' % (rect.center().x()+self.pos().x()-10, rect.center().y()+self.pos().y()-10))
+        move(rect.center().x()+self.pos().x()-10, rect.center().y()+self.pos().y()-10)
         self.scene.addEllipse(rect.center().x()+self.pos().x()-2, rect.center().y()+self.pos().y()-2, 4, 4, QPen(QColor('blue')), QBrush(QColor('blue')))
 
     def clickHere(self, rect):
         self.showMinimized()
         time.sleep(0.3)
-        os.system('xdotool mousemove %s %s; xdotool click 1' % (rect.center().x()+self.pos().x()-10, rect.center().y()+self.pos().y()-10))
+        click(rect.center().x()+self.pos().x()-10, rect.center().y()+self.pos().y()-10)
         time.sleep(0.3)
-        os.system('xdotool mousemove %s' % config.get('Settings', 'mouse_home_coords'))
+        move(*config.get('Settings', 'mouse_home_coords').split(' '))
         sys.exit()
 
     def getArea(self, k, direction):
