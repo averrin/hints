@@ -19,16 +19,22 @@ config = ConfigParser.ConfigParser()
 config.read(os.path.join(CWD, 'hints.cfg'))
 
 def move(x, y):
+    x = int(x)
+    y = int(y)
     if sys.platform.startswith('linux'):
         os.system('xdotool mousemove %s %s' % (x, y))
     else:
+        print('imouse.exe %s %s move' % (x, y))
         os.system('imouse.exe %s %s move' % (x, y))
 
 def click(x, y):
+    x = int(x)
+    y = int(y)
     if sys.platform.startswith('linux'):
         move(x, y)
         os.system('xdotool click 1')
     else:
+        print('imouse.exe %s %s click' % (x, y))
         os.system('imouse.exe %s %s click' % (x, y))
 
 class Layer(QMainWindow):
@@ -72,7 +78,7 @@ class Layer(QMainWindow):
 
     def setPointer(self, rect):
         move(rect.center().x()+self.pos().x()-10, rect.center().y()+self.pos().y()-10)
-        self.scene.addEllipse(rect.center().x()+self.pos().x()-2, rect.center().y()+self.pos().y()-2, 4, 4, QPen(QColor('blue')), QBrush(QColor('blue')))
+        # self.scene.addEllipse(rect.center().x()+self.pos().x()-2, rect.center().y()+self.pos().y()-2, 4, 4, QPen(QColor('blue')), QBrush(QColor('blue')))
 
     def clickHere(self, rect):
         self.showMinimized()
