@@ -7,7 +7,10 @@ from functools import partial
 import sys
 import os
 import time
-from queue import LifoQueue
+try:
+    from queue import LifoQueue
+except:
+    from Queue import LifoQueue
 try:
     import ConfigParser
 except:
